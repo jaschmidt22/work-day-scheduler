@@ -26,29 +26,29 @@
     //
     // TODO: Add code to apply the past, present, or future class to each time
     // block by comparing the id to the current hour. HINTS: How can the id
+
     // attribute of each time-block be used to conditionally add or remove the
     // past, present, and future classes? How can Day.js be used to get the
     // current hour in 24-hour time?
    
    
-   
- 
-  var timeDisplayEl = $('#time-display');
+  $(document).ready(function() {
+    var timeDisplayEl = $('#time-display');
     
-  function displayTime() {
-    var rightNow = dayjs().format('MMM DD, YYYY [at]hh:mm:ss a');
+    function displayTime() {
+    var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm a');
     timeDisplayEl.text(rightNow);
-    }
+  }
     
-  function updateCurrentTime() {
-    var rightNow = dayjs().format('MMM DD, YYYY [at]hh:mm:ss a');
-    $('#rightnow').text(rightNow);
+    function updateCurrentTime() {
+      var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm a');
+      $('#rightnow').text(rightNow);
     
-    var currentTime24hr = dayjs().format('HH:mm:ss');
+      var currentTime24hr = dayjs().format('HH:mm');
     
-    var currentTime12hr = dayjs(currentTime24hr, 'HH:mm:ss').format('h:mm A');
+      var currentTime12hr = dayjs(currentTime24hr, 'HH:mm').format('h:mm A');
   
-    $('.time-disaplay').text(currentTime12hr);
+      $('.time-display').text(currentTime12hr);
 
     }
     
@@ -56,13 +56,49 @@
     updateCurrentTime();
     
     // Use setInterval to update the current time every second
-    setInterval(updateCurrentTime, 1000);
-    
+    setInterval(updateCurrentTime, 60000);
+  })  
+
+  function updateBlockColors() {
+    // Get the current hour in 24-hour format
+    var currentHour = dayjs().format('H');
+    console.log("Current Hour:", currentHour);
+  
+    // Loop through all the time blocks
+    $('.time-block').each(function () {
+      // remove the hour from the time block's ID
+      var hour = parseInt(this.id.split('-').pop());   
+                                                                            
+        // Check if the hour is in the past, present, or future
+        if (hour < currentHour) {
+        
+          $(this).addClass("past");
+      
+        } else if (hour === currentHour) {                                           
+        
+          $(this).addClass("present");
+     
+        } else {
+        
+          $(this).addClass("future");
+      }
+    });
+  }
+  
+  // Call the function to set the colors
+  updateBlockColors();
+  
+  setInterval(updateBlockColors, 60000); // Update every minute
+  
+
+
+
+
+
     // TODO: Add code to get any user input that was saved in localStorage and set
     // the values of the corresponding textarea elements. HINT: How can the id
     // attribute of each time-block be used to do this?
     
     
     // TODO: Add code to display the current date in the header of the page.
-  //});
-  
+ 
