@@ -9,6 +9,7 @@ I was given the task of creating a calendar application that runs in the browser
 I created a calendar application that runs in the browser. This calendar consists of the hours for a typical workday, 8am to 6pm, and a text area to add notes for each hour. The text box correlating to the current time will be a bright orange color. The text boxes for the previous hours will the gray, and the future hours will be green. Upon clicking the blue save button, the input entered by the user will appear within the text box. This application runs in the browser and features dynamically updated HTML and CSS powered by jQuery. When the page is refreshed in the browser, the user input will still appear. If the user wishes to delete an entry, the may do so and click the save button. It will no longer appear.
 
 https://github.com/jaschmidt22/work-day-scheduler
+<img width="890" alt="Screenshot 2023-11-20 155226" src="https://github.com/jaschmidt22/work-day-scheduler/assets/146290812/f86f6c36-9434-430f-a726-df14ce5d7bdd">
 
 ## Credits
 
